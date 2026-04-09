@@ -1,6 +1,6 @@
 {
   "name": "@enso-ui/checkbox",
-  "version": "3.0.11",
+  "version": "4.0.0",
   "description": "Checkbox",
   "main": "index.js",
   "repository": {
