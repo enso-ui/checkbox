@@ -1,6 +1,6 @@
 <template>
     <div class="items">
-        <div class="is-hoverable-item"
+        <div class="checkbox-item"
             v-for="item in items"
             :key="item.id">
             <slot name="item"
@@ -90,3 +90,9 @@ export default {
     },
 };
 </script>
+
+<style lang="scss" scoped>
+    .checkbox-item:hover {
+        background-color: var(--bulma-scheme-main-bis);
+    }
+</style>

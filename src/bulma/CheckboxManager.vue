@@ -1,7 +1,7 @@
 <template>
     <card collapsible
         :collapsed="collapsed">
-        <card-header class="has-background-light">
+        <card-header>
             <template #title>
                 {{ title }}
             </template>
@@ -19,7 +19,6 @@
         </card-header>
         <card-content class="p-3">
             <checkbox-manager class="is-rounded checkbox-manager"
-                :class="{ 'raises-on-hover': items[group]._items.length }"
                 v-for="group in groups"
                 collapsed
                 :title="group"
