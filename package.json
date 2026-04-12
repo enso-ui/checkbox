@@ -18,14 +18,13 @@
     "url": "https://github.com/enso-ui/checkbox/issues"
   },
   "homepage": "https://github.com/enso-ui/checkbox#readme",
-  "dependencies": {
-    "@enso-ui/card": "^4.0.0"
-  },
   "peerDependencies": {
+    "@enso-ui/card": "^4.0.0",
     "bulma": "^1.0.4",
     "vue": "^3.5.0"
   },
   "devDependencies": {
+    "@enso-ui/card": "^4.0.0",
     "bulma": "^1.0.4",
     "vue": "^3.5.0"
   }
