@@ -99,10 +99,10 @@ export default {
             return this.ready && !this.childrenRefs.some(child => !child.unchecked);
         },
         itemsChecked() {
-            return this.ready && this.$refs.items.status === Checked;
+            return this.ready && this.$refs.items?.status === Checked;
         },
         itemsUnchecked() {
-            return this.ready && this.$refs.items.status === Unchecked;
+            return this.ready && this.$refs.items?.status === Unchecked;
         },
         hasChildren() {
             return this.groups.length > 0;
@@ -123,8 +123,10 @@ export default {
     },
 
     mounted() {
-        this.ready = true;
-        this.update();
+        this.$nextTick(() => {
+            this.ready = true;
+            this.update();
+        });
     },
 
     beforeUpdate() {
@@ -177,7 +179,7 @@ export default {
                 this.childrenRefs
                     .forEach(child => child.change(this.checkbox.checked));
             }
-            if (this.hasItems) {
+            if (this.hasItems && this.$refs.items) {
                 this.$refs.items.change(this.checkbox.checked);
             }
         },
