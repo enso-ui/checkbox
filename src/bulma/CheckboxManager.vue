@@ -138,6 +138,17 @@ export default {
         });
     },
 
+    watch: {
+        modelValue: {
+            handler() {
+                if (this.ready) {
+                    this.$nextTick(this.update);
+                }
+            },
+            deep: true,
+        },
+    },
+
     beforeUpdate() {
         this.childrenRefs = [];
     },
