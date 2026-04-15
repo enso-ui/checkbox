@@ -24,8 +24,10 @@
                 :title="group"
                 :key="group"
                 :items="items[group]"
+                :model-value="modelValue"
                 v-bind="$attrs"
                 @change="update"
+                @update:modelValue="$emit('update:modelValue', $event)"
                 :ref="setChildrenRef">
                 <template #checkbox="props">
                     <slot name="checkbox"
@@ -37,8 +39,10 @@
                 </template>
             </checkbox-manager>
             <checkbox-items :items="items._items"
+                :model-value="modelValue"
                 v-bind="$attrs"
                 @change="update"
+                @update:modelValue="$emit('update:modelValue', $event)"
                 ref="items"
                 v-if="hasItems">
                 <template #item="props">
@@ -56,7 +60,6 @@ import {
     Card, CardHeader, CardContent, CardControl, CardCollapse,
 } from '@enso-ui/card/bulma';
 import CheckboxItems from './CheckboxItems.vue';
-import { Checked, Unchecked } from '../statuses';
 
 export default {
     name: 'CheckboxManager',
@@ -74,13 +77,17 @@ export default {
             type: Object,
             required: true,
         },
+        modelValue: {
+            type: Array,
+            required: true,
+        },
         title: {
             type: String,
             required: true,
         },
     },
 
-    emits: ['change'],
+    emits: ['change', 'update:modelValue'],
 
     data: () => ({
         ready: false,
@@ -99,10 +106,12 @@ export default {
             return this.ready && !this.childrenRefs.some(child => !child.unchecked);
         },
         itemsChecked() {
-            return this.ready && this.$refs.items?.status === Checked;
+            return this.ready && this.items._items
+                .every(({ id }) => this.modelValue.includes(id));
         },
         itemsUnchecked() {
-            return this.ready && this.$refs.items?.status === Unchecked;
+            return this.ready && this.items._items
+                .every(({ id }) => !this.modelValue.includes(id));
         },
         hasChildren() {
             return this.groups.length > 0;
