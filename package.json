@@ -1,8 +1,8 @@
 {
   "name": "@enso-ui/checkbox",
   "version": "4.0.5",
-  "description": "Checkbox",
-  "main": "index.js",
+  "description": "Hierarchical checkbox managers and leaf checkbox lists for Enso UI.",
+  "main": "bulma/index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/enso-ui/checkbox.git"
